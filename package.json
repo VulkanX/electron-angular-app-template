@@ -1,20 +1,27 @@
 {
   "name": "elite-helper",
   "version": "0.0.0",
+  "main": "dist/main.js",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "buildng": "ng build --configuration production --base-href ./",
+    "liveng": "ng serve",
+    "buildapp": "tsc --lib ES2018,DOM --target ES5 app/main.ts --outDir dist",
+    "build": "ng build --configuration production --base-href ./ && tsc --lib ES2018,DOM --target ES5 app/main.ts --outDir dist",
+    "package": "npm run build && electron-packager . EliteHelper --overwrite --asar --icon=dist/elitehelper/assets/icon.ico --ignore=^e2e$ --ignore=^src$ --ignore=^app$ --ignore=^.editorconfig$ --ignore=^.gitignore$ --ignore=^angular.json$ --ignore=^browserslist$ --ignore=^karma.conf.js$ --ignore=^package-lock.json$ --ignore=^README.md$ --ignore=^tslint --ignore=^tsconfig && start .\\EliteHelper-win32-x64\\",
+    "start": "electron .",
+    "launch": "npm-run-all --sequential buildapp --parallel liveng start",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
+    "@angular/cdk": "^16.2.6",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
     "@angular/core": "^16.2.0",
     "@angular/forms": "^16.2.0",
+    "@angular/material": "^16.2.6",
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
@@ -27,12 +34,15 @@
     "@angular/cli": "^16.2.4",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
+    "electron": "^26.2.4",
+    "electron-packager": "^17.1.2",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "npm-run-all": "^4.1.5",
     "typescript": "~5.1.3"
   }
 }

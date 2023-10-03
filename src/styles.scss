@@ -1,1 +1,114 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$rich-black-palette: (
+  50: #e1eafb,
+  100: #baccdf,
+  200: #96a8bf,
+  300: #7187a1,
+  400: #566f8c,
+  500: #3b5877,
+  600: #2f4c67,
+  700: #203a52,
+  800: #12293d,
+  900: #011627,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    )
+  );
+
+  $turquoise-palette: (
+    50: #d9faf6,
+    100: #9ef2e5,
+    200: #41ead3,
+    300: #00dec0,
+    400: #00d1af,
+    500: #00c59f,
+    600: #00b690,
+    700: #00a47e,
+    800: #00936f,
+    900: #00754f,
+    contrast: (
+      50: rgba(black, 0.87),
+      100: rgba(black, 0.87),
+      200: rgba(black, 0.87),
+      300: rgba(black, 0.87),
+      400: rgba(black, 0.87),
+      500: white,
+      600: white,
+      700: white,
+      800: white,
+      900: white,
+      )
+    );
+
+  $red-palette: (
+  50: #ffe9ed,
+  100: #ffc8cf,
+  200: #f79093,
+  300: #ef6268,
+  400: #fa3442,
+  500: #ff0022,
+  600: #f00023,
+  700: #de001e,
+  800: #d20015,
+  900: #c40004,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    )
+  );
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$EliteHelper-primary: mat.define-palette($rich-black-palette);
+$EliteHelper-accent: mat.define-palette($turquoise-palette);
+
+// The warn palette is optional (defaults to red).
+$EliteHelper-warn: mat.define-palette($red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$EliteHelper-theme: mat.define-light-theme((
+  color: (
+    primary: $EliteHelper-primary,
+    accent: $EliteHelper-accent,
+    warn: $EliteHelper-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($EliteHelper-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
